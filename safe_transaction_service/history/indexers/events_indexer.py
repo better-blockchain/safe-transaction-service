@@ -22,7 +22,10 @@ class EventsIndexer(EthereumIndexer):
     IGNORE_ADDRESSES_ON_LOG_FILTER: bool = False  # If True, don't use addresses to filter logs
 
     def __init__(self, *args, **kwargs):
-        kwargs['first_block_threshold'] = 0
+        #
+        # todo x: set here
+        #
+        kwargs['first_block_threshold'] = 8555555  # 0
         super().__init__(*args, **kwargs)
 
     @property
