@@ -6,14 +6,17 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
-    "*",
-    "localhost",
-    "0.0.0.0",
-    "127.0.0.1",
-    "192.168.1.123",
-    "192.168.1.103",
-])
+# ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
+#     "*",
+#     "localhost",
+#     "0.0.0.0",
+#     "127.0.0.1",
+#     "192.168.1.123",
+#     "192.168.1.103",
+# ])
+
+
+ALLOWED_HOSTS = ['*']
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -97,3 +100,9 @@ ADMIN_URL = env('DJANGO_ADMIN_URL', default='admin/')
 # Gunicorn
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['gunicorn']  # noqa F405
+
+#
+# print config:
+#
+print("prod: config ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("prod: config db:", DATABASES)
