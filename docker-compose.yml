@@ -62,3 +62,78 @@ services:
     <<: *worker
     command: docker/web/celery/scheduler/run.sh
 
+  #################### celery worker group ##############################
+  # exec celery -A config.celery_app worker --loglevel $log_level --pool=gevent --autoscale=120,80
+
+  # celery worker：
+  celery_worker_default: &celery_worker_default
+    <<: *worker
+    environment:
+      - CELERY_WATCH_QUEUE=default
+    command: docker/web/celery/worker/run_group.sh
+
+  celery_worker_tokens:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=tokens
+
+  celery_worker_notifications:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=notifications
+
+
+  celery_worker_contracts:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=contracts
+
+
+  ########################################################
+
+  celery_worker_history_1:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.index_new_proxies_task
+
+  celery_worker_history_2:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.index_internal_txs_task
+
+  celery_worker_history_3:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.index_safe_events_task
+
+  celery_worker_history_4:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.index_erc20_events_task
+
+  celery_worker_history_5:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.process_decoded_internal_txs_task
+
+  celery_worker_history_6:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.process_decoded_internal_txs_for_safe_task
+
+  celery_worker_history_7:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.check_reorgs_task
+
+  celery_worker_history_8:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.send_webhook_task
+
+  celery_worker_history_9:
+    <<: *celery_worker_default
+    environment:
+      - CELERY_WATCH_QUEUE=history.index_contract_metadata
+
+
