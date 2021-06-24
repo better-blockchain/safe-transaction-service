@@ -65,15 +65,15 @@ log-worker:
 
 ################################################################################################
 
-build-old:
+old_build:
 	docker-compose build --force-rm
 
-run-old2:
+old_run:
 	docker-compose up -d
 	docker-compose logs -f
 
-stop-old:
+old_stop:
 	docker-compose -f ./docker-compose.yml down
 	docker ps
 
-rerun-old: stop-old build-old run-old2
+old_quick: old_stop old_build old_run

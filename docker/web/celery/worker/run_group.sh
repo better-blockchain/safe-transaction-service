@@ -15,5 +15,5 @@ fi
 
 sleep 1  # Wait for migrations
 echo "==> $(date +%H:%M:%S) ==> Running Celery worker <=="
-echo "==> $(date +%H:%M:%S) ==> worke queue: ${CELERY_WATCH_QUEUE}"
+echo "==> $(date +%H:%M:%S) ==> Celery worker watch queue: ${CELERY_WATCH_QUEUE}"
 exec celery -A config.celery_app worker --loglevel $log_level --pool=gevent --autoscale=120,80 -Q ${CELERY_WATCH_QUEUE}
