@@ -2,6 +2,7 @@ version: '3.5'
 
 volumes:
   nginx-shared:
+  postgres_data:
 
 services:
   nginx:
@@ -26,6 +27,9 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 
   web:
     build:

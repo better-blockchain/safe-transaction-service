@@ -63,6 +63,15 @@ log-worker:
 	docker-compose -f ./compose-prod-worker.yml logs -f
 
 
+################################################################################################
+
+build-old:
+	docker-compose build --force-rm
+
+run-old2:
+	docker-compose up -d
+	docker-compose logs -f
+
 stop-old:
 	docker-compose -f ./docker-compose.yml down
 	docker ps
