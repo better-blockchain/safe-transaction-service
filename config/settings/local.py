@@ -11,9 +11,12 @@ DEBUG = env.bool('DJANGO_DEBUG', default=True)
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='aHdCBMHXuxIxEhfRGFRp7Cp3N9CqEZEEAvwZVlBCazKExkEnzvVs4bYWC8Qqh9lg')
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
+    "*",
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
+    "192.168.1.123",
+    "192.168.1.103",
 ]
 
 # CACHES
@@ -40,7 +43,7 @@ EMAIL_PORT = 1025
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
 INSTALLED_APPS += ['debug_toolbar']  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
-MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware',   # noqa F405
+MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware',  # noqa F405
                'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware']
 # https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
 DEBUG_TOOLBAR_CONFIG = {
