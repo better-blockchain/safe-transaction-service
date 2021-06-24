@@ -75,3 +75,5 @@ run-old2:
 stop-old:
 	docker-compose -f ./docker-compose.yml down
 	docker ps
+
+rerun-old: stop-old build-old run-old2

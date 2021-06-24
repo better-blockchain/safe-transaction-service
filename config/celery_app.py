@@ -36,16 +36,17 @@ app.conf.task_queues = {
     #
     # history group:
     #
-    Queue("history.index_new_proxies_task", routing_key="history.index_new_proxies_task"),
-    Queue("history.index_internal_txs_task", routing_key="history.index_internal_txs_task"),
-    Queue("history.index_safe_events_task", routing_key="history.index_safe_events_task"),
-    Queue("history.index_erc20_events_task", routing_key="history.index_erc20_events_task"),
-    Queue("history.process_decoded_internal_txs_task", routing_key="history.process_decoded_internal_txs_task"),
-    Queue("history.process_decoded_internal_txs_for_safe_task",
+    Queue("history.index_new_proxies_task", Exchange("history"), routing_key="history.index_new_proxies_task"),
+    Queue("history.index_internal_txs_task", Exchange("history"), routing_key="history.index_internal_txs_task"),
+    Queue("history.index_safe_events_task", Exchange("history"), routing_key="history.index_safe_events_task"),
+    Queue("history.index_erc20_events_task", Exchange("history"), routing_key="history.index_erc20_events_task"),
+    Queue("history.process_decoded_internal_txs_task", Exchange("history"),
+          routing_key="history.process_decoded_internal_txs_task"),
+    Queue("history.process_decoded_internal_txs_for_safe_task", Exchange("history"),
           routing_key="history.process_decoded_internal_txs_for_safe_task"),
-    Queue("history.check_reorgs_task", routing_key="history.check_reorgs_task"),
-    Queue("history.send_webhook_task", routing_key="history.send_webhook_task"),
-    Queue("history.index_contract_metadata", routing_key="history.index_contract_metadata"),
+    Queue("history.check_reorgs_task", Exchange("history"), routing_key="history.check_reorgs_task"),
+    Queue("history.send_webhook_task", Exchange("history"), routing_key="history.send_webhook_task"),
+    Queue("history.index_contract_metadata", Exchange("history"), routing_key="history.index_contract_metadata"),
 }
 
 # celery routes
@@ -85,7 +86,6 @@ app.conf.task_routes = {
         "queue": "contracts",
         "routing_key": "contracts"
     },
-
 
     #
     # history
