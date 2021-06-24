@@ -189,6 +189,9 @@ PROXY_FACTORIES: Dict[EthereumNetwork, List[Tuple[str, int]]] = {
 }
 
 
+#
+# todo x: here!
+#
 class Command(BaseCommand):
     help = 'Setup Transaction Service Required Tasks'
 
